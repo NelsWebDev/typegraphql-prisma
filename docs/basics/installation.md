@@ -4,7 +4,7 @@ sidebar_position: 1
 ---
 
 :::info
-Be aware that due to usage of some ES2021 and newer Node.js features, you also have to use **Node.js v16.13.0 or newer**.
+Prisma 7 requires **Node.js v20.19.0 or newer**.
 :::
 
 ### TypeGraphQL
@@ -28,16 +28,15 @@ npm i -D prisma
 npm i @prisma/client
 ```
 
-:::caution
-Be aware that `typegraphql-prisma` is designed to work with a selected versions of Prisma.
-This generator is designed to work and tested with the features of the `5.0.0` release.
+Prisma 7's default client requires a driver adapter when you construct
+`PrismaClient`. Install the adapter for your database (for example,
+`npm i @prisma/adapter-pg pg` for PostgreSQL) and pass it in the `adapter`
+option. See the [Prisma driver adapters documentation](https://www.prisma.io/docs/orm/overview/databases/database-drivers).
 
-You can update both `prisma` and `@prisma/client` to a newer version, matching `^5.0.0`, like `5.4.2`, in order to receive important bugfixes.
-However, make sure you don't use the new features from a newer Prisma version, especially the ones behind a preview flag.
-
-If you encounter a new Prisma feature not supported yet, please check on GitHub issues and create a new issue, if that wasn't already reported, and downgrade the Prisma version, if needed.
-
-:::
+`typegraphql-prisma` supports Prisma 7. Configure the Prisma Client generator with the
+`prisma-client` provider and an explicit output path, as shown in the
+[configuration guide](./configuration.md). Prisma 7 also requires database connection
+URLs to be configured in `prisma.config.ts`, rather than in the Prisma schema.
 
 ### Additional dependencies
 

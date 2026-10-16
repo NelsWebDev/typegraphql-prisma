@@ -7,14 +7,14 @@ sidebar_position: 2
 
 After installation, you need to update your `schema.prisma` file and then add a new generator section below the `client` one:
 
-```prisma {10-12}
+```prisma {10-13}
 datasource postgres {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
 
 generator typegraphql {
@@ -22,7 +22,24 @@ generator typegraphql {
 }
 ```
 
-Then run `npx prisma generate` - this will emit the generated TypeGraphQL classes to the `@generated/type-graphql` folder inside `node_modules`.
+Configure the datasource URL in `prisma.config.ts`:
+
+```ts
+import "dotenv/config";
+import { defineConfig, env } from "prisma/config";
+
+export default defineConfig({
+  schema: "prisma/schema.prisma",
+  datasource: {
+    url: env("DATABASE_URL"),
+  },
+});
+```
+
+Then run `npx prisma generate` - this emits Prisma Client to `generated/prisma` and
+TypeGraphQL classes to the `@generated/type-graphql` folder inside `node_modules`.
+Import `PrismaClient` from the generated client entry point, for example:
+`import { PrismaClient } from "../generated/prisma/client";`.
 
 ## Changing output folder
 

@@ -23,12 +23,12 @@ export async function generate(options: GeneratorOptions) {
   await removeDir(outputDir, true);
 
   const prismaClientProvider = options.otherGenerators.find(
-    it => parseEnvValue(it.provider) === "prisma-client-js",
+    it => parseEnvValue(it.provider) === "prisma-client",
   )!;
-  const prismaClientPath = parseEnvValue(prismaClientProvider.output!);
+  const prismaClientOutputPath = parseEnvValue(prismaClientProvider.output!);
+  const prismaClientPath = path.join(prismaClientOutputPath, "client");
   const prismaClientDmmf = await getDMMF({
     datamodel: options.datamodel,
-    previewFeatures: prismaClientProvider.previewFeatures,
   });
 
   const generatorConfig = options.generator.config;

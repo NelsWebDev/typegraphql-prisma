@@ -22,6 +22,7 @@ export const supportedMutationActions = [
   "createOne",
   "createMany",
   "createManyAndReturn",
+  "updateManyAndReturn",
   "deleteOne",
   "updateOne",
   "deleteMany",

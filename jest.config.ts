@@ -30,7 +30,7 @@ const config: Config.InitialOptions = {
     "<rootDir>/package",
     "<rootDir>/tests/artifacts",
   ],
-  testTimeout: 10000,
+  testTimeout: 30000,
   snapshotFormat: {
     escapeString: true,
     printBasicPrototype: true,

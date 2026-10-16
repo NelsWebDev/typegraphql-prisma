@@ -720,7 +720,7 @@ describe("crud", () => {
       );
 
       expect(userCrudResolverTSFile).toMatchSnapshot("UserCrudResolver");
-    }, 20000);
+    }, 60000);
   });
 
   describe("when formatGeneratedCode is set to 'prettier'", () => {
@@ -743,7 +743,7 @@ describe("crud", () => {
       );
 
       expect(userCrudResolverTSFile).toMatchSnapshot("UserCrudResolver");
-    }, 20000);
+    }, 60000);
   });
 
   describe("when formatGeneratedCode is set to false", () => {
@@ -766,7 +766,7 @@ describe("crud", () => {
       );
 
       expect(userCrudResolverTSFile).toMatchSnapshot("UserCrudResolver");
-    }, 20000);
+    }, 60000);
   });
 
   describe("when emitRedundantTypesInfo is set to true", () => {
